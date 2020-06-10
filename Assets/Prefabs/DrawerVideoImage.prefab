@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 222581406789405622}
   - component: {fileID: 114401941215594898}
   - component: {fileID: 114728927924227564}
+  - component: {fileID: 114864634201339892}
   m_Layer: 5
-  m_Name: DrawerVideoImage (1)
+  m_Name: DrawerVideoImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,6 +68,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VideoSurfaceType: 1
+--- !u!114 &114864634201339892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784136484914726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e17da6eaf89d46cf910c028e9e69f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222581406789405622
 CanvasRenderer:
   m_ObjectHideFlags: 1

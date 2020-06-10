@@ -62,8 +62,8 @@ public class AgoraInterface : MonoBehaviour {
     {
         Agora.LeaveChannel();
         Agora.DisableVideoObserver();
-        IRtcEngine.Destroy();
-        Agora = null;
+       // IRtcEngine.Destroy();
+        //Agora = null;
     }
 
 

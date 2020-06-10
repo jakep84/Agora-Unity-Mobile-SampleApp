@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1223,8 +1223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loginView: {fileID: 974557570}
   _channelView: {fileID: 1268950231}
+  _backgroundVideo: {fileID: 1300173263}
   _channelName: {fileID: 976066503}
-  _selfVideo: {fileID: 0}
+  _selfVideo: {fileID: 1479917518}
   scrollBar: {fileID: 1627877271}
   videoPrefab: {fileID: 1784136484914726, guid: 80faf386a3e704370b04b4ee0d65c9e9,
     type: 2}
@@ -1489,8 +1490,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1300173264}
   - component: {fileID: 1300173266}
-  - component: {fileID: 1300173265}
   - component: {fileID: 1300173267}
+  - component: {fileID: 1300173265}
   m_Layer: 5
   m_Name: BackgroundVideoImage
   m_TagString: Untagged
@@ -1524,7 +1525,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1300173263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1535,14 +1536,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &1300173266
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1851,6 +1851,7 @@ GameObject:
   - component: {fileID: 1479917521}
   - component: {fileID: 1479917522}
   - component: {fileID: 1479917520}
+  - component: {fileID: 1479917523}
   m_Layer: 5
   m_Name: SelfViewVideo
   m_TagString: Untagged
@@ -1920,6 +1921,17 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1479917523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479917518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e17da6eaf89d46cf910c028e9e69f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487768256
 GameObject:
   m_ObjectHideFlags: 0
