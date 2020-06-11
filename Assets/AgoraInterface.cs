@@ -5,7 +5,7 @@ using agora_gaming_rtc;
 
 public class AgoraInterface : MonoBehaviour {
     
-    public string appId = "49ac8a8917c04d1eb67fc9bb98afa842";
+    public string appId = "";
 
     public IRtcEngine Agora{
         get; private set;

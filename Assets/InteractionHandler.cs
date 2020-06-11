@@ -18,8 +18,11 @@ public class InteractionHandler : MonoBehaviour {
     public GameObject videoPrefab;
     public GameObject RemoteVidPanel;
 
-    private HashSet<uint> users = new HashSet<uint>();
-    private uint numUsers;
+    private uint _backgroundVideoUid;
+
+    private List<GameObject> _userTiles = new List<GameObject>();
+    private HashSet<uint> _users = new HashSet<uint>();
+    private uint _numUsers;
 
 
     public static InteractionHandler Instance
@@ -42,14 +45,41 @@ public class InteractionHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
         AgoraInterface.Instance.OnInitialize += Instance_OnInitialize;
-
 	}
 	
     void Instance_OnInitialize()
     {
         AgoraInterface.Instance.Agora.OnUserJoined += Agora_OnUserJoined;
+        AgoraInterface.Instance.Agora.OnUserOffline += Agora_OnUserOffline;
         AgoraInterface.Instance.Agora.OnJoinChannelSuccess += Agora_OnJoinChannelSuccess;
     }
+
+    void Agora_OnUserOffline(uint uid, USER_OFFLINE_REASON reason)
+    {
+        // Find user and remove it from list
+        var tileIndex = _userTiles.FindIndex((video) => video.GetComponent<VideoHandler>().Uid == uid);
+        var tile = _userTiles[tileIndex];
+        _userTiles.Remove(tile);
+        _users.Remove(uid);
+        DestroyImmediate(tile);
+
+        var numChildren = scrollBar.gameObject.transform.childCount;
+        if(numChildren > tileIndex)
+        {
+            for(int i = tileIndex; i < numChildren; i++)
+            {
+                var rect = _userTiles[i].GetComponent<RectTransform>();
+                rect.anchoredPosition = new Vector3(0, -i * (rect.rect.height + 20), 0);
+            }
+        }
+
+        // Change background uid if needed
+        if(_backgroundVideoUid == uid)
+        {
+            SwapBackgroundVideo(0);
+        }
+    }
+
     void Agora_OnJoinChannelSuccess(string channelName, uint uid, int elapsed)
     {
         AgoraInterface.Instance.Agora.EnableVideoObserver();
@@ -59,13 +89,14 @@ public class InteractionHandler : MonoBehaviour {
 
     void Agora_OnUserJoined(uint uid, int elapsed)
     {
-        if (users.Contains(uid))
+        if (_users.Contains(uid))
             return;
 
      
         var video = Instantiate(videoPrefab);
         video.transform.SetParent(scrollBar.gameObject.transform, false);
         video.GetComponent<VideoHandler>().Uid = uid;
+        _userTiles.Add(video);
 
         // Set video object inside scrollbar
         var numChildren = scrollBar.gameObject.transform.childCount;
@@ -78,8 +109,8 @@ public class InteractionHandler : MonoBehaviour {
         vs.SetEnable(true);
         vs.EnableFilpTextureApply(true, true);
 
-        numUsers++;
-        users.Add(uid);
+        _numUsers++;
+        _users.Add(uid);
     }
 
 
@@ -119,6 +150,7 @@ public class InteractionHandler : MonoBehaviour {
     {
         var videoSurface = _backgroundVideo.GetComponent<VideoSurface>();
         videoSurface.SetForUser(uid);
+        _backgroundVideoUid = uid;
     }
 
     public void OpenPanel()

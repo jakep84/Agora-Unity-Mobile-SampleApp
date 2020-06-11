@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# iOS plugin
+Assets/AgoraEngine/Plugins/iOS/AgoraRtcEngineKit.framework/*

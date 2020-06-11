@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class VideoHandler : MonoBehaviour, IPointerClickHandler {
 
 	public uint Uid
-	{ set { uid = value; } }
+	{
+		get { return uid; }
+		set { uid = value; }
+	}
 
 	private uint uid;
 
